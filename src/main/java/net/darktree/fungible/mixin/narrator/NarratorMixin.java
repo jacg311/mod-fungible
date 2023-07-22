@@ -1,7 +1,6 @@
 package net.darktree.fungible.mixin.narrator;
 
 import com.mojang.text2speech.Narrator;
-import com.mojang.text2speech.NarratorDummy;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -14,7 +13,7 @@ public interface NarratorMixin {
 	 */
 	@Overwrite
 	static Narrator getNarrator() {
-		return new NarratorDummy();
+		return Narrator.EMPTY;
 	}
 
 }

@@ -1,8 +1,8 @@
 package net.darktree.fungible.mixin.screen_fade;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.SplashOverlay;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.resource.ResourceReload;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class SplashOverlayMixin {
 	 * Let's not waste time on fancy animations shall we?
 	 */
 	@Inject(method="render", at=@At("HEAD"), cancellable=true)
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
+	public void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo info) {
 		if (reload.isComplete()) {
 			MinecraftClient.getInstance().setOverlay(null);
 			info.cancel();
